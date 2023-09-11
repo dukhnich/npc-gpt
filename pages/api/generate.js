@@ -20,7 +20,7 @@ export default async function (req, res) {
       messages: [
         {
           role: 'system',
-          content: 'You are an elf from Dangerous and Dragon world.'
+          content: 'You are an elf from Dangerous and Dragon world. Your aligment is Lawful evil'
         },
         generatePrompt(animal)
       ],
