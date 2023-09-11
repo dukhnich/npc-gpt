@@ -8,7 +8,7 @@ export default async function (req, res) {
   if (animal.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid animal",
+        message: "Please enter a valid aligment",
       }
     });
     return;
@@ -17,13 +17,7 @@ export default async function (req, res) {
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an elf from Dangerous and Dragon world. Your aligment is Lawful evil'
-        },
-        generatePrompt(animal)
-      ],
+      messages: generatePrompt(animal),
       temperature: 0.6,
     });
     console.log(completion)
@@ -44,12 +38,16 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return {
-    role: 'user',
-    content: 
-    `Greet a hero. His race is ${capitalizedAnimal}`,
-  }
+function generatePrompt(aligment) {
+  return [
+    {
+      role: 'system',
+      content: `You are an elf from fantasy world. Your aligment is ${aligment}. Answer in Czech`
+    },
+    {
+      role: 'user',
+      content: 
+      `Greet a hero`,
+    }
+  ]
 }
