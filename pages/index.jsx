@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
 import generate from "./api/generate";
+
 export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
@@ -12,10 +13,10 @@ export default function Home() {
       const data = await generate({ animal: animalInput });
       setResult(data.result);
       // setAnimalInput("");
-    } catch(error) {
+    } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
-      alert(error.message);
+      // alert(error.message);
     }
   }
 
@@ -27,7 +28,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <img src="/dice-logo.png" className={styles.icon} />
+        <img src="/dice-logo.png" alt="dice logo" className={styles.icon} />
         <h3>Greet a hero</h3>
         <form onSubmit={onSubmit}>
           <input
