@@ -1,17 +1,11 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI();
+const openai = new OpenAI({ apiKey: 'my-key', dangerouslyAllowBrowser: true });
 
-export default async function (req, res) {
+export default async function ({animal}) {
 
-  const animal = req.body.animal || '';
   if (animal.trim().length === 0) {
-    res.status(400).json({
-      error: {
-        message: "Please enter a valid aligment",
-      }
-    });
-    return;
+    throw new Error('Please enter a valid aligment');
   }
 
   try {
@@ -21,19 +15,15 @@ export default async function (req, res) {
       temperature: 0.6,
     });
     console.log(completion)
-    res.status(200).json({ result: completion.choices[0].message.content });
+    return ({ result: completion.choices[0].message.content });
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
       console.error(error.response.status, error.response.data);
-      res.status(error.response.status).json(error.response.data);
+      throw error;
     } else {
       console.error(`Error with OpenAI API request: ${error.message}`);
-      res.status(500).json({
-        error: {
-          message: 'An error occurred during your request.',
-        }
-      });
+      throw new Error('An error occurred during your request.');
     }
   }
 }
@@ -46,7 +36,7 @@ function generatePrompt(aligment) {
     },
     {
       role: 'user',
-      content: 
+      content:
       `Greet a hero`,
     }
   ]

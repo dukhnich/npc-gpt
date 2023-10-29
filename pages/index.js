@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
-
+import generate from "./api/generate";
 export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
@@ -9,19 +9,7 @@ export default function Home() {
   async function onSubmit(event) {
     event.preventDefault();
     try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ animal: animalInput }),
-      });
-
-      const data = await response.json();
-      if (response.status !== 200) {
-        throw data.error || new Error(`Request failed with status ${response.status}`);
-      }
-
+      const data = await generate({ animal: animalInput });
       setResult(data.result);
       // setAnimalInput("");
     } catch(error) {
