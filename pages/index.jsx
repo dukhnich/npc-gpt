@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
 import generate from "./api/generate";
-
+import Header from "../components/Header/index.jsx";
 export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
@@ -25,8 +25,14 @@ export default function Home() {
       <Head>
         <title>DnD NPC</title>
         <link rel="icon" href="/dog.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-
+      <Header />
       <main className={styles.main}>
         <img src="/dice-logo.png" alt="dice logo" className={styles.icon} />
         <h3>Greet a hero</h3>
