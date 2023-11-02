@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./index.module.css";
 import generate from "./api/generate";
 import Header from "../components/Header/index.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
 export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
