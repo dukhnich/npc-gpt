@@ -4,11 +4,17 @@ import styles from "./index.module.css";
 import { createOpenAiClient, generate } from "./api/generate";
 import Header from "../components/Header/index.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
+import characters from "/pages/data/characters.json";
 
 const Home = () => {
   const [alignment, setAlignment] = useState("");
   const [apiKey, setApiKey] = useState();
+  const [currentNpc, setCurrentNpc] = useState();
   const [result, setResult] = useState();
+  const setCurrentNpcById = (id) => {
+    const npc = (characters || []).find((c) => c.id === id);
+    setCurrentNpc(npc);
+  };
   useEffect(() => {
     const key = localStorage.getItem("npc-api-key");
     if (key) {
@@ -44,7 +50,13 @@ const Home = () => {
           rel="stylesheet"
         />
       </Head>
-      <Header apiKey={apiKey} onSend={setApiKey} />
+      <Header
+        apiKey={apiKey}
+        onSend={setApiKey}
+        characters={characters}
+        currentNpc={currentNpc}
+        onSetNpc={setCurrentNpcById}
+      />
       <main className={styles.main}>
         <img src="/dice-logo.png" alt="dice logo" className={styles.icon} />
         <h3>Greet a hero</h3>

@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
-const CharacterCard = (character) => {
+const CharacterCard = ({ character, currentNpc, onSetNpc }) => {
   const { id, name, race, sex, age, charClass, background, alignment } =
     character;
   const list = { sex, age, charClass, background, alignment };
@@ -14,14 +14,22 @@ const CharacterCard = (character) => {
       </Card.Body>
       <ListGroup>
         {Object.entries(list).map(([key, value]) => (
-          <ListGroup.Item>
-            {key}
-            <div className="fw-bold">{value}</div>
+          <ListGroup.Item key={key}>
+            <div className="d-flex align-baseline justify-content-between">
+              {key}
+              <div className="fw-bold">{value}</div>
+            </div>
           </ListGroup.Item>
         ))}
       </ListGroup>
       <Card.Footer className="text-muted">
-        <Button variant="primary">Choose</Button>
+        <Button
+          variant="primary"
+          disabled={currentNpc?.id === id}
+          onClick={() => onSetNpc(id)}
+        >
+          Choose
+        </Button>
       </Card.Footer>
     </Card>
   );
