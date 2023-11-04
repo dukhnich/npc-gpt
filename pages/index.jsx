@@ -6,7 +6,7 @@ import Header from "../components/Header/index.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
-  const [animalInput, setAnimalInput] = useState("");
+  const [alignment, setAlignment] = useState("");
   const [apiKey, setApiKey] = useState();
   const [result, setResult] = useState();
   useEffect(() => {
@@ -22,7 +22,7 @@ const Home = () => {
   async function onSubmit(event) {
     event.preventDefault();
     try {
-      const data = await generate({ animal: animalInput });
+      const data = await generate({ alignment: alignment });
       setResult(data.result);
       // setAnimalInput("");
     } catch (error) {
@@ -51,10 +51,10 @@ const Home = () => {
         <form onSubmit={onSubmit}>
           <input
             type="text"
-            name="animal"
-            placeholder="Enter an aligment"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
+            name="alignment"
+            placeholder="Enter an alignment"
+            value={alignment}
+            onChange={(e) => setAlignment(e.target.value)}
           />
           <input type="submit" value="Greet" />
         </form>

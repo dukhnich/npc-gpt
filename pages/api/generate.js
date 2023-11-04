@@ -8,11 +8,12 @@ export function createOpenAiClient(apiKey) {
   }
   openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
 }
-function generatePrompt(aligment) {
+function generatePrompt(character) {
+  const { alignment } = character;
   return [
     {
       role: "system",
-      content: `You are an elf from fantasy world. Your aligment is ${aligment}. Answer in Czech`,
+      content: `You are an elf from fantasy world. Your alignment is ${alignment}. Answer in Czech`,
     },
     {
       role: "user",
@@ -21,15 +22,15 @@ function generatePrompt(aligment) {
   ];
 }
 
-export async function generate({ animal }) {
-  if (animal.trim().length === 0) {
+export async function generate(character) {
+  const { alignment } = character;
+  if (alignment.trim().length === 0) {
     throw new Error("Please enter a valid aligment");
   }
-  console.log(openai);
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages: generatePrompt(animal),
+      messages: generatePrompt(character),
       temperature: 0.6,
     });
     console.log(completion);
