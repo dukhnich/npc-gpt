@@ -1,13 +1,24 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./index.module.css";
-import generate from "./api/generate";
+import { createOpenAiClient, generate } from "./api/generate";
 import Header from "../components/Header/index.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
-  const [result, setResult] = useState();
 
+const Home = () => {
+  const [animalInput, setAnimalInput] = useState("");
+  const [apiKey, setApiKey] = useState();
+  const [result, setResult] = useState();
+  useEffect(() => {
+    const key = localStorage.getItem("npc-api-key");
+    if (key) {
+      setApiKey(key);
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("npc-api-key", apiKey);
+    createOpenAiClient(apiKey);
+  }, [apiKey]);
   async function onSubmit(event) {
     event.preventDefault();
     try {
@@ -33,7 +44,7 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-      <Header />
+      <Header apiKey={apiKey} onSend={setApiKey} />
       <main className={styles.main}>
         <img src="/dice-logo.png" alt="dice logo" className={styles.icon} />
         <h3>Greet a hero</h3>
@@ -51,4 +62,6 @@ export default function Home() {
       </main>
     </div>
   );
-}
+};
+
+export default Home;

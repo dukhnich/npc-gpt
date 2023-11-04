@@ -1,7 +1,13 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: "my-key", dangerouslyAllowBrowser: true });
+let openai;
 
+export function createOpenAiClient(apiKey) {
+  if (!apiKey) {
+    return;
+  }
+  openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
+}
 function generatePrompt(aligment) {
   return [
     {
@@ -15,11 +21,11 @@ function generatePrompt(aligment) {
   ];
 }
 
-export default async function ({ animal }) {
+export async function generate({ animal }) {
   if (animal.trim().length === 0) {
     throw new Error("Please enter a valid aligment");
   }
-
+  console.log(openai);
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
