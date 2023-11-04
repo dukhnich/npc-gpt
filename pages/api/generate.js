@@ -1,36 +1,42 @@
 import OpenAI from "openai";
 
 let openai;
-
+let npc;
 export function createOpenAiClient(apiKey) {
   if (!apiKey) {
     return;
   }
   openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
 }
-function generatePrompt(character) {
-  const { alignment } = character;
+
+export function generateNPC(character) {
+  npc = character;
+}
+function generatePrompt(character, message) {
+  const characterInfo = Object.entries(character || {}).reduce(
+    (str, [key, value]) => `${str}, your ${key} is ${value} `,
+    "",
+  );
   return [
     {
       role: "system",
-      content: `You are an elf from fantasy world. Your alignment is ${alignment}. Answer in Czech`,
+      content: `You are a character from fantasy world. Something about you: ${characterInfo}. Answer in Czech`,
     },
     {
       role: "user",
-      content: `Greet a hero`,
+      content: message,
     },
   ];
 }
 
-export async function generate(character) {
-  const { alignment } = character;
-  if (alignment.trim().length === 0) {
-    throw new Error("Please enter a valid aligment");
+export async function generate(character, message) {
+  if (message.trim().length === 0) {
+    throw new Error("Please enter a message");
   }
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages: generatePrompt(character),
+      messages: generatePrompt(character, message),
       temperature: 0.6,
     });
     console.log(completion);

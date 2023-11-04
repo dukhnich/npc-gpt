@@ -5,11 +5,12 @@ import { createOpenAiClient, generate } from "./api/generate";
 import Header from "../components/Header/index.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import characters from "/pages/data/characters.json";
+import Button from "react-bootstrap/Button";
 
 const Home = () => {
-  const [alignment, setAlignment] = useState("");
   const [apiKey, setApiKey] = useState();
   const [currentNpc, setCurrentNpc] = useState();
+  const [message, setMessage] = useState("");
   const [result, setResult] = useState();
   const setCurrentNpcById = (id) => {
     const npc = (characters || []).find((c) => c.id === id);
@@ -28,7 +29,7 @@ const Home = () => {
   async function onSubmit(event) {
     event.preventDefault();
     try {
-      const data = await generate({ alignment: alignment });
+      const data = await generate(currentNpc, message);
       setResult(data.result);
       // setAnimalInput("");
     } catch (error) {
@@ -59,16 +60,17 @@ const Home = () => {
       />
       <main className={styles.main}>
         <img src="/dice-logo.png" alt="dice logo" className={styles.icon} />
-        <h3>Greet a hero</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
-            name="alignment"
-            placeholder="Enter an alignment"
-            value={alignment}
-            onChange={(e) => setAlignment(e.target.value)}
+            name="message"
+            placeholder="Enter a message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
           />
-          <input type="submit" value="Greet" />
+          <Button variant="primary" type="submit">
+            Send
+          </Button>
         </form>
         <div className={styles.result}>{result}</div>
       </main>
