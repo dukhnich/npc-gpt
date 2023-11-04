@@ -2,7 +2,8 @@ import styles from "./index.module.css";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-
+import characters from "/pages/data/characters.json";
+import CharacterCard from "../CharacterCard/index.jsx";
 const CharactersSidebar = () => {
   const [show, setShow] = useState(false);
 
@@ -12,7 +13,7 @@ const CharactersSidebar = () => {
   return (
     <>
       <Button variant="outline-light" onClick={handleShow}>
-        Show Characters
+        Characters
       </Button>
 
       <Offcanvas
@@ -23,7 +24,11 @@ const CharactersSidebar = () => {
         <Offcanvas.Header closeVariant="white" closeButton>
           <Offcanvas.Title>Characters</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>List</Offcanvas.Body>
+        <Offcanvas.Body>
+          {characters.map((c) => (
+            <CharacterCard key={c.id} {...c} />
+          ))}
+        </Offcanvas.Body>
       </Offcanvas>
     </>
   );

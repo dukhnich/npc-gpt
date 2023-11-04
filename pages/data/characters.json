@@ -5,7 +5,7 @@
     "race": "Elf",
     "sex": "Muž",
     "age": 236,
-    "class": "Kouzelník",
+    "charClass": "Kouzelník",
     "background": "Přírodní talent",
     "alignment": "Neutrální zlý"
   },
@@ -15,7 +15,7 @@
     "race": "Člověk",
     "sex": "Žena",
     "age": 42,
-    "class": "Válečník",
+    "charClass": "Válečník",
     "background": "Hrdina místního lidu",
     "alignment": "Zákonný neutrální"
   },
@@ -25,7 +25,7 @@
     "race": "Trpaslík",
     "sex": "Muž",
     "age": 125,
-    "class": "Zloděj",
+    "charClass": "Zloděj",
     "background": "Obchodník se vzácnými kameny",
     "alignment": "Zákonný dobrý"
   },
@@ -35,7 +35,7 @@
     "race": "Elfa",
     "sex": "Žena",
     "age": 172,
-    "class": "Hranostaj",
+    "charClass": "Hranostaj",
     "background": "Zlodějka z vyšší společnosti",
     "alignment": "Chaotický dobrý"
   },
@@ -45,7 +45,7 @@
     "race": "Člověk",
     "sex": "Muž",
     "age": 55,
-    "class": "Kněz",
+    "charClass": "Kněz",
     "background": "Posel bohů",
     "alignment": "Neutrální"
   },
@@ -55,7 +55,7 @@
     "race": "Trpaslice",
     "sex": "Žena",
     "age": 68,
-    "class": "Bard",
+    "charClass": "Bard",
     "background": "Písničkářka",
     "alignment": "Chaotická neutrální"
   },
@@ -65,7 +65,7 @@
     "race": "Člověk",
     "sex": "Muž",
     "age": 34,
-    "class": "Čaroděj",
+    "charClass": "Čaroděj",
     "background": "Zakázaného rodu",
     "alignment": "Chaotický neutrální"
   },
@@ -75,7 +75,7 @@
     "race": "Gnomka",
     "sex": "Žena",
     "age": 95,
-    "class": "Alchymistka",
+    "charClass": "Alchymistka",
     "background": "Zelená čarodějka",
     "alignment": "Zákonná neutrální"
   },
@@ -85,7 +85,7 @@
     "race": "Polork",
     "sex": "Muž",
     "age": 28,
-    "class": "Barbar",
+    "charClass": "Barbar",
     "background": "Vyvrženec",
     "alignment": "Chaotický zlý"
   },
@@ -95,7 +95,7 @@
     "race": "Polokouzelník",
     "sex": "Žena",
     "age": 52,
-    "class": "Čarodějka",
+    "charClass": "Čarodějka",
     "background": "Bylinkářka",
     "alignment": "Neutrální zlá"
   },
@@ -105,7 +105,7 @@
     "race": "Elf (Elf)",
     "sex": "Žena",
     "age": 126,
-    "class": "Ranger (Hraničář)",
+    "charClass": "Ranger (Hraničář)",
     "background": "Outlander (Větrolam)",
     "alignment": "Chaotic Good (Chaoticky dobrý)"
   },
@@ -115,7 +115,7 @@
     "race": "Dwarf (Trpaslík)",
     "sex": "Muž",
     "age": 57,
-    "class": "Cleric (Kněz)",
+    "charClass": "Cleric (Kněz)",
     "background": "Acolyte (Akolita)",
     "alignment": "Lawful Good (Zákonně dobrý)"
   },
@@ -125,7 +125,7 @@
     "race": "Human (Člověk)",
     "sex": "Muž",
     "age": 32,
-    "class": "Wizard (Kouzelník)",
+    "charClass": "Wizard (Kouzelník)",
     "background": "Sage (Mudrc)",
     "alignment": "Neutral Good (Neutrálně dobrý)"
   },
@@ -135,7 +135,7 @@
     "race": "Halfling (Polokouzelník)",
     "sex": "Žena",
     "age": 43,
-    "class": "Bard (Pěvec)",
+    "charClass": "Bard (Pěvec)",
     "background": "Entertainer (Zábavník)",
     "alignment": "Chaotic Neutral (Chaoticky neutrální)"
   },
@@ -145,7 +145,7 @@
     "race": "Tiefling (Uvázlík)",
     "sex": "Muž",
     "age": 87,
-    "class": "Warlock (Čaroděj)",
+    "charClass": "Warlock (Čaroděj)",
     "background": "Charlatan (Podvodník)",
     "alignment": "Chaotic Evil (Chaoticky zlý)"
   }
