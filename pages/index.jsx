@@ -2,13 +2,14 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import styles from "./index.module.css";
 import { createOpenAiClient, generate } from "./api/generate";
+import Warehouse from "../modules/Warehouse/index.jsx";
 import Header from "../components/Header/index.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import characters from "/pages/data/characters.json";
 import Button from "react-bootstrap/Button";
 
 const Home = () => {
-  const [apiKey, setApiKey] = useState();
+  const [apiKey, setApiKey] = useState("");
   const [currentNpc, setCurrentNpc] = useState();
   const [message, setMessage] = useState("");
   const [result, setResult] = useState();
@@ -17,13 +18,6 @@ const Home = () => {
     setCurrentNpc(npc);
   };
   useEffect(() => {
-    const key = localStorage.getItem("npc-api-key");
-    if (key) {
-      setApiKey(key);
-    }
-  }, []);
-  useEffect(() => {
-    localStorage.setItem("npc-api-key", apiKey);
     createOpenAiClient(apiKey);
   }, [apiKey]);
   async function onSubmit(event) {
@@ -51,6 +45,7 @@ const Home = () => {
           rel="stylesheet"
         />
       </Head>
+      <Warehouse index="npc-api-key" state={apiKey} setter={setApiKey} />
       <Header
         apiKey={apiKey}
         onSend={setApiKey}

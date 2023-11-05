@@ -1,7 +1,6 @@
 import styles from "./index.module.css";
 import KeyPopup from "../KeyPopup/index.jsx";
 import CharactersSidebar from "../CharactersSidebar/index.jsx";
-import characters from "../../pages/data/characters.json";
 const Header = ({ apiKey, onSend, characters, currentNpc, onSetNpc }) => {
   return (
     <header className={styles.header}>
